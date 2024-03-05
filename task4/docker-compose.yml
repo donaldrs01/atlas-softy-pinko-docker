@@ -1,6 +1,22 @@
 version: '3'
 services:
-  frontend:
+  front-end:
     image: softy-pinko-front-end:task4
     ports:
-    
+      - "8080:80"
+      # Tells compose to look for Dockerfiles in specific directory
+    build:
+      context: ./front-end
+      dockerfile: Dockerfile
+  
+  back-end:
+    image: soft-pinko-back-end:task4
+    ports:
+      - "5252:5252"
+    build:
+      context: ./back-end
+      dockerfile: Dockerfile
+    depends_on:
+      - front-end
+
+
